@@ -70,16 +70,16 @@ Kết quả: 20 ảnh, 4 cảnh báo (3 nặng ở A05/A09 thiếu L1/R1 và 1 c
 ## 6. Ảnh chụp màn hình
 
 1. **Tab Labels của project** — hiển thị 6 label và 4 label Tag với đủ thuộc tính:  
-   ![01-project-labels](screenshots/01-project-labels.png)
+   ![01-project-labels](../../screenshots/01-project-labels.png)
 
 2. **Một ảnh camera trước đã gán đủ (làn, vùng lái, đèn/biển)** — ví dụ ảnh A08:  
-   ![02-front-annotation](screenshots/02-front-annotation.png)
+   ![02-front-annotation](../../screenshots/02-front-annotation.png)
 
 3. **Một ảnh fisheye đã gán, phóng to đoạn polyline cong** — ví dụ ảnh B03:  
-   ![03-fisheye-curved-line](screenshots/03-fisheye-curved-line.png)
+   ![03-fisheye-curved-line](../../screenshots/03-fisheye-curved-line.png)
 
 4. **Đoạn XML có `<polyline label="lane">`**:  
-   ![04-xml-lane](screenshots/04-xml-lane.png)
+   ![04-xml-lane](../../screenshots/04-xml-lane.png)
 
 ## 7. Tự đánh giá
 **Lỗi mắc nhiều nhất hôm nay:** QC1-07 — vẽ polygon `drivable` khoét theo thân xe.  
