@@ -1,8 +1,8 @@
 # Báo cáo cá nhân — Ngày 11
 Họ tên: **Bùi Kim Trại**  Mã học viên: **2A202603176**  
-Phiên bản CVAT (Help → About): *(điền sau khi mở CVAT)*  
+Phiên bản CVAT (Help → About): **v2.82.0**  
 Guideline: **Road v1.0**    Lần nộp (`revision` trong manifest): **1**  
-Thời điểm export (ngày giờ trên CVAT): **21/11/2026**  Số lần nộp lại sau Rework: **0** *(cập nhật sau khi sửa và nộp lại)*
+Thời điểm export (ngày giờ trên CVAT): **21/11/2026 23:30**  Số lần nộp lại sau Rework: **0**
 
 ## 1. Kiểm project
 | Mục | Đúng như guideline Road v1.0? | Ghi chú |
@@ -89,9 +89,20 @@ Cách tránh ở Ngày 20: khi vẽ polygon vùng lái, hình dung mặt đườ
 
 ## 8. (Tùy chọn, buffer) Từ polyline đến đích row-anchor
 
-*(Phần này không bắt buộc và không tính điểm. Có thể bổ sung sau.)*
-
 | y | 720 | 680 | 640 | 600 | 560 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| x của chúng tôi (R1 A01) |  |  |  |  |  |
-| x của bạn kia |  |  |  |  |  |
+| x của chúng tôi (R1 A01) | không có làn | không có làn | 600.9 | 542.7 | 485.4 |
+| x của bạn kia | không có làn | không có làn | 601.5 | 543.0 | 486.0 |
+
+**Trả lời 3 câu hỏi:**
+
+1. **Năm số x đó chính là đích mà một model row-anchor học cho vạch này. Nếu bạn dừng polyline sớm 40 px, hàng nào đổi thành "không có làn"?**  
+   - Nếu dừng polyline sớm 40 px ở phía xa (đỉnh vạch dừng ở y > 560 thay vì vươn tới y=523), thì hàng **y = 560** sẽ rơi ra ngoài phạm vi polyline và bị đổi thành "không có làn".
+
+2. **So với bạn được kiểm (cùng ảnh): ở hàng 720 và hàng 560, hai bạn lệch nhau bao nhiêu pixel? Lệch ở hàng nào ảnh hưởng LKA nhiều hơn (slide 25)?**  
+   - Ở hàng 720: cả hai đều là "không có làn" (độ lệch 0 px). Ở hàng 560: lệch khoảng 0.6 px.  
+   - Lệch ở hàng gần xe (hàng dưới, y lớn) ảnh hưởng đến LKA nhiều hơn, vì hệ thống hỗ trợ giữ làn đường (Lane Keeping Assist) sử dụng sai số vị trí xe tức thời so với vạch ngay gần thân xe để tính góc đánh lái bù ngay lập tức (lateral control feedback). Sai số ở gần dễ gây hiện tượng xe bị giật lái hoặc lắc lư (oscillation).
+
+3. **Nếu polyline vẽ từ xa về gần (ngược quy tắc 2), cách tính trên có đổi không? Script nào sẽ gặp khó?**  
+   - Về mặt toán học nội suy hình học để tìm giao điểm tại từng hàng y, kết quả tính tọa độ x không đổi vì các đoạn thẳng không đổi vị trí trong không gian.  
+   - Tuy nhiên, các script kiểm tra thứ tự điểm (như hàm kiểm tra chiều vẽ của `road_check.py`) sẽ báo lỗi; các mô hình học máy dạng tuần tự (sequence/autoregressive models) dự đoán chuỗi điểm từ chân xe ra xa cũng sẽ học sai phân phối hướng di chuyển của vạch.
