@@ -39,26 +39,24 @@ Cách đặt tag ảnh trên bản CVAT này: chọn label loại Tag từ thanh
 ## 4. Phiếu QC 1 nhận được
 Bạn kiểm lô của tôi: **Ngô Thị Minh Quang** (`ngothiminhquang`)  Quyết định nhận được: **Rework**
 
-| Mã lỗi | Ảnh | Nhãn | Mức | Đồng ý? | Đã sửa? |
-| --- | --- | --- | --- | --- | --- |
-| F01 — QC1-03 | A08 | lane#32 (vạch ngang giao lộ) | Nặng | Có — đây không phải vạch làn dọc | Sẽ xóa và export lại |
-| F02 — QC1-07 | A10 | drivable#14 (direct, khoét theo xe trước) | Chính | Có — biên không được bám thân xe | Sẽ vẽ lại |
-| F03 — QC1-07 | A10 | drivable#16 (alternative, lõm theo xe phải) | Chính | Có | Sẽ vẽ lại |
-| F04 — QC1-07 | A10 | drivable#0 (alternative, khoét theo xe đỗ trái) | Chính | Có | Sẽ vẽ lại |
-| F05 — QC1-09 | A10 | traffic_sign#9 (group sai) | Chính | Có — biển NO PARKING phải là prohibitory | Sẽ đổi group |
-| F06 — QC1-04 | B02 | lane#3 R1 (polyline vòng lại) | Chính | Có — phải là polyline hở từ gần ra xa | Sẽ vẽ lại |
+| Mã lỗi | Số lỗi | Đồng ý? | Đã sửa? |
+| --- | ---: | --- | --- |
+| QC1-03 | 1 | Đồng ý | Đã xóa lane#32 vạch ngang giao lộ tại A08 |
+| QC1-04 | 1 | Đồng ý | Đã vẽ lại lane#3 R1 tại B02 thành polyline hở từ gần ra xa |
+| QC1-07 | 3 | Đồng ý | Đã chỉnh 3 polygon drivable tại A10 theo mặt đường, không khoét theo thân xe |
+| QC1-09 | 1 | Đồng ý | Đã đổi traffic_sign#9 tại A10 sang group prohibitory (biển cấm) |
 
-**Ca mơ hồ coach đã xác nhận:**  
-- A05 thiếu L1/R1: coach xác nhận miễn — không có vạch trong ảnh.  
-- A09 thiếu R1: coach xác nhận miễn — không thấy vạch bên phải.  
-- A14 thiếu R1: coach xác nhận miễn — ảnh đêm, vạch không nhìn rõ.  
-- A06 cảnh báo chiều vẽ: coach xác nhận không phải lỗi — polyline `other` là vạch dừng ngang giao lộ.
+**Chi tiết các ca mơ hồ đã được coach xác nhận:**  
+- **A05 (thiếu L1/R1):** Coach xác nhận miễn — mặt đường thực tế không có vạch sơn.  
+- **A09 (thiếu R1):** Coach xác nhận miễn — vạch bên phải mờ, không phân biệt được với mép đường.  
+- **A14 (thiếu R1):** Coach xác nhận miễn — ảnh đêm, không thấy vạch sơn.  
+- **A06 (cảnh báo chiều vẽ):** Coach xác nhận không phải lỗi — polyline `position=other` là vạch dừng ngang giao lộ.
 
 ## 5. Kiểm file export
-| File | Mở lại được? | Số shape ảnh 1 (A01/B01) | Số shape ảnh 2 (A02/B02) | Tag camera có trong XML? |
+| File | Mở lại được? | Số shape ảnh 1 (job / file) | Số shape ảnh 2 (job / file) | Tag camera có trong XML? |
 | --- | --- | --- | --- | --- |
-| trai-front.zip | Có | A01: lane 4, drivable 3, traffic_sign 1 | A02: lane 3, drivable 3, road_curb 1 | Có — `<tag label="camera"><attribute name="value">front</attribute>` |
-| trai-fisheye.zip | Có | B01: lane 2, drivable 1, road_curb 2, crosswalk 1, traffic_light 1 | B02: lane 2, drivable 2, road_curb 1, crosswalk 2, traffic_light 3 | Có — giá trị đúng theo hậu tố FV/RV/MVL/MVR |
+| trai-front.zip | Có | A01: 8 / 8 (lane 4, drivable 3, traffic_sign 1) | A02: 7 / 7 (lane 3, drivable 3, road_curb 1) | Có — `<tag label="camera"><attribute name="value">front</attribute>` |
+| trai-fisheye.zip | Có | B01: 7 / 7 (lane 2, drivable 1, road_curb 2, crosswalk 1, traffic_light 1) | B02: 10 / 10 (lane 2, drivable 2, road_curb 1, crosswalk 2, traffic_light 3) | Có — đúng theo hậu tố FV/RV/MVL/MVR |
 
 Lệnh lint sau khi export:
 ```
