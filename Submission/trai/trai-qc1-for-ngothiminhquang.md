@@ -15,9 +15,9 @@ Revision: không có manifest kèm các file nhận được.
 | ngothiminhquang-front-extra.zip | A13–A16 | 4 |
 | ngothiminhquang-fisheye-extra.zip | B09–B12 | 4 |
 
-Cả bốn file đều mở được, đủ 28 ảnh, mỗi ảnh có bốn tag và không kèm ảnh gốc. Đã chạy lint trên cả bốn file, sau đó đối chiếu nhãn với ảnh gốc để kiểm hình vẽ và thuộc tính.
+Tôi đã mở và kiểm tra cả 4 file ZIP của bạn Quang, xác nhận đủ 28 ảnh, không kèm ảnh gốc và đủ 4 tag theo quy định. Sau khi chạy lint kiểm tra file, tôi đối chiếu nhãn với ảnh gốc để rà soát chi tiết hình vẽ và thuộc tính.
 
-Mẫu kiểm chi tiết gồm **A02, A08, A10, B02, B06, B08**. Kiểm thêm **B11** và ghi kết quả riêng.
+Mẫu kiểm chi tiết của tôi gồm 6 ảnh bắt buộc: **A02, A08, A10, B02, B06, B08**. Tôi kiểm thêm **B11** và ghi kết quả riêng.
 
 | Ảnh | Shape | Tag | Tổng nhãn | Nhận xét |
 | --- | ---: | ---: | ---: | --- |
@@ -86,7 +86,7 @@ B11 có **6 lỗi nặng**, ghi riêng cho phần ảnh thêm. Nếu nộp ảnh
 | B06 | Một số đường nằm gần cạnh đảo phân luồng/đường ray. | Chưa kết luận thêm lỗi phân loại khi chưa xác định rõ từng đường. |
 | A10, traffic_sign#15 | Cần kiểm tra mép từng tấm biển trong box để quyết định có phải tách riêng không. | Chỉ ghi lỗi group ở F05, không cộng thêm lỗi gộp box. |
 
-Các điểm trên đã được trao đổi với coach; coach đồng ý chốt phiếu theo kết quả hiện tại. Chưa tính thêm lỗi ngoài những lỗi đã ghi rõ trong danh sách.
+Các điểm trên tôi đã trao đổi trực tiếp với Coach và được Coach đồng ý chốt phiếu theo kết quả hiện tại, không tính thêm lỗi ngoài những lỗi đã ghi rõ trong danh sách.
 
 ## Quyết định
 
@@ -97,11 +97,10 @@ Ca chờ lead ảnh hưởng đến quyết định: **0**
 
 **Quyết định: Rework.**
 
-Lô còn lỗi nặng F01 nên cần trả lại để sửa. Tỉ lệ lỗi chính là 4,24%, chưa vượt 5%, nhưng vẫn không đủ điều kiện Release vì còn lỗi nặng.
+**Lý do (theo luật của phiếu):**  
+Tôi quyết định yêu cầu Rework vì lô của bạn Quang còn 1 lỗi nặng F01 (vạch ngang giao lộ bị gán thành nhãn lane). Theo quy tắc của phiếu QC 1, chỉ cần còn 1 lỗi nặng là bắt buộc phải Rework. Tỉ lệ lỗi chính là 4,24% (5 / 118 nhãn), chưa vượt ngưỡng 5%.  
 
-Quang cần sửa F01–F06; nếu nộp B11 để xét thưởng thì sửa thêm E01–E06. Sau đó lưu nhãn, export lại và gửi bản mới để kiểm lại các lỗi đã ghi. Giữ bản cũ và cập nhật revision trong manifest khi nộp lại.
-
-Ba lỗi có thể dùng để đối chiếu lại phiếu: F01 ở A08, F02 ở A10 và F06 ở B02. Ảnh A02 chưa phát hiện lỗi trong phần đã kiểm.
+Đề nghị bạn Quang sửa các lỗi từ F01 đến F06 trong mẫu bắt buộc (nếu nộp B11 để xét điểm thưởng thì sửa thêm E01–E06). Sau đó lưu nhãn, export lại và cập nhật revision 2 trong manifest để nộp lại. Tôi sẽ đối chiếu lại chủ yếu ở ba lỗi F01 (A08), F02 (A10) và F06 (B02). Ảnh A02 tôi dùng làm đối chứng vì chưa phát hiện lỗi trong phạm vi kiểm.
 
 Người kiểm: **BuiKimTrai**  
 Ngày chốt: **21/11/2026**
